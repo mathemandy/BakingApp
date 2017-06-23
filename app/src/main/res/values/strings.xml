@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Baking App</string>
+    <string name="error_no_baking_recipe">Could not find any recipe :(</string>
+    <string name="error_solution_baking_recipe">Tap to retry</string>
+    <string name="available_reccipe">Available Recipes</string>
+
+    <!--Comments by recipe maker-->
+    <string name="comm_yellow_Cake">"5"</string>
+    <string name="comm_cheese_cake">"7"</string>
+    <string name="comm_brownies">"7"</string>
+    <string name="comm_nutella_pie">"6"</string>
+    <string name="empty_view">Oops, No Favorite Found</string>
+
+    <!--name of the recipe in the Recipe_Ingredient grouop-->
+    <string name="activity_Nuella_Pie">Nuella</string>
+    <string name="servings_description">Servings : </string>
+    <string name="string_of">of</string>
+</resources>

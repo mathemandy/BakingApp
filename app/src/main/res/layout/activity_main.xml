@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recipeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_gravity="center_horizontal"
+            />
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:id="@+id/empty_view"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_view"
+            >
+
+        </TextView>
+
+
+        <include android:id="@+id/error_view"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            layout="@layout/errorinfo"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="app_title">
+        <item>Nuella Pie</item>
+        <item>Brownies</item>
+        <item>Yellow Cake</item>
+        <item>Cheese Cake</item>
+
+    </array>
+</resources>
