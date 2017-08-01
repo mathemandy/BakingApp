@@ -7,12 +7,15 @@ import android.os.Handler;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
-import com.ng.tselebro.bakingapp.Model.POJO.Ingredient;
+import com.google.gson.Gson;
 
-import com.ng.tselebro.bakingapp.Model.POJO.Recipe;
-import com.ng.tselebro.bakingapp.Model.POJO.Step;
+import com.google.gson.reflect.TypeToken;
+import com.ng.tselebro.bakingapp.Model.Recipe;
+import com.ng.tselebro.bakingapp.Model.Step;
+import com.ng.tselebro.bakingapp.Model.Ingredient;
 import com.ng.tselebro.bakingapp.data.local.RecipeColumns;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +57,7 @@ public class RecipeLoader extends AsyncTaskLoader<List<Recipe>> {
     @Override
     public List<Recipe> loadInBackground() {
         List<Recipe> recipes = new ArrayList<>();
-        List<Ingredient> ingredientList = new ArrayList<>();
-        List<Step> stepList = new ArrayList<>();
+
 
         try {
 
@@ -66,45 +68,37 @@ public class RecipeLoader extends AsyncTaskLoader<List<Recipe>> {
                     null);
             if (c != null && c.getCount() > 0){
                 while (c.moveToNext()){
-                    int stepId  = Integer.parseInt(c.getString(c.getColumnIndexOrThrow(RecipeColumns.id)));
-                    String measure = c.getString(c.getColumnIndexOrThrow(RecipeColumns.Measure));
-                    float Quantiy = Float.parseFloat(c.getString(c.getColumnIndexOrThrow(RecipeColumns.Quantity)));
-                    String Ingredient  = c.getString(c.getColumnIndexOrThrow(RecipeColumns.ingredient));
+                    int id = Integer.valueOf(c.getString(c.getColumnIndexOrThrow(RecipeColumns.ID)));
+                    String IngredientJson  = c.getString(c.getColumnIndexOrThrow(RecipeColumns.ingredient));
                     String RecipeName = c.getString(c.getColumnIndexOrThrow(RecipeColumns.recipeName));
-                    int  servings = Integer.parseInt(c.getString(c.getColumnIndexOrThrow(RecipeColumns.servings)));
+                    int  servings =Integer.parseInt(c.getString(c.getColumnIndexOrThrow(RecipeColumns.servings)));
                     String image_url = c.getString(c.getColumnIndexOrThrow(RecipeColumns.image_url));
-                    String shortDescription = c.getString(c.getColumnIndexOrThrow(RecipeColumns.shortDescription));
-                    String longDescription = c.getString(c.getColumnIndexOrThrow(RecipeColumns.longDescription));
-                    String video_url = c.getString(c.getColumnIndexOrThrow(RecipeColumns.mVideourl));
-                    String thumbnailurl = c.getString(c.getColumnIndexOrThrow(RecipeColumns.thumbnailUrl));
+                    String stepsJson = c.getString (c.getColumnIndexOrThrow(RecipeColumns.steps));
+
 
                     Recipe recipe = new Recipe();
-                    Ingredient ingredients = new Ingredient();
-                    Step steps = new Step();
+                    //do sth
 
-                    //Add the steps objects to the arrayList
-                    steps.setId(stepId);
-                    steps.setShortDescription(shortDescription);
-                    steps.setDescription(longDescription);
-                    steps.setThumbnailURL(thumbnailurl);
-                    steps.setVideoURL(video_url);
-                    stepList.add(steps);
-                    recipe.setSteps(stepList);
 
-                    //Add the ingredient objects to the array list
-                    ingredients.setIngredient(Ingredient);
-                    ingredients.setMeasure(measure);
-                    ingredients.setQuantity(Quantiy);
-                    ingredientList.add(ingredients);
-                    recipe.setIngredients(ingredientList);
+                    Type collectionIngredient = new TypeToken<List<Ingredient>>(){}.getType();
+                    List<Ingredient> ingredientsJson = new Gson().fromJson(IngredientJson, collectionIngredient);
+
+
+                    Type collectionSteps = new TypeToken<List<Step>>(){}.getType();
+                    List<Step> StepJson = new Gson().fromJson(stepsJson, collectionSteps);
 
 //                    Add the recipe details to List
+                    recipe.setId(id);
                     recipe.setImage(image_url);
                     recipe.setName(RecipeName);
                     recipe.setServings(servings);
+                    recipe.setSteps(StepJson);
+                    recipe.setIngredients(ingredientsJson);
+
+                    //do sth
                     recipes.add(recipe);
 
-                    Log.d("RecipeLoader" , "The amount of data returned" + c);
+                    Log.d("RecipeLoader" , "The amount of data returned" + c.getCount());
                 }
             }
             if (c != null){

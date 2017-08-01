@@ -1,4 +1,4 @@
-package com.ng.tselebro.bakingapp.Model.POJO;
+package com.ng.tselebro.bakingapp.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

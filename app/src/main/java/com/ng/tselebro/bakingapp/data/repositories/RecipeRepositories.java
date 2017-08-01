@@ -1,8 +1,6 @@
 package com.ng.tselebro.bakingapp.data.repositories;
 import static com.google.common.base.Preconditions.checkNotNull;
-/**
- * Created by mathemandy on 12 Jun 2017.
- */
+
 
 public class RecipeRepositories {
     private static  RepositoryContract.RecipeRepository repository = null;

@@ -9,20 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ng.tselebro.bakingapp.Model.POJO.Recipe;
+import com.ng.tselebro.bakingapp.Model.Recipe;
 import com.ng.tselebro.bakingapp.R;
 import com.ng.tselebro.bakingapp.recipe.MainActivity.RecipeItemListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import butterknife.BindDrawable;
-import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdapterViewHolder> {
@@ -36,6 +36,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         setList(recipes);
         mItemListener = recipeItemListener;
     }
+
+
 
     @Override
     public RecipeAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -98,8 +100,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         }
         holder.recipeName.setText(recipe.getName());
         holder.recipeServings.setText(String.format(Locale.ENGLISH, "%2d", recipe.getServings()));
-
-
 
     }
 

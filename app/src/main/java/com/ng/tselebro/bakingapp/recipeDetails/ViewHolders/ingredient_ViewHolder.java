@@ -9,16 +9,16 @@ import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by mathemandy on 20 Jun 2017.
- */
+
 
 public class ingredient_ViewHolder extends ChildViewHolder {
     @BindView(R.id.ingredient_name)
+
     TextView ingredient_name;
-    @BindView (R.id.ingredient_measure)
-    TextView ingredient_measure;
+    @BindView(R.id.ingredient_measure)
+     TextView ingredient_measure;
     @BindView(R.id.ingredient_quantity)
+
     TextView ingredient_quantity;
 
 

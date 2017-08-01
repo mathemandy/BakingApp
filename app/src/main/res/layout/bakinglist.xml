@@ -24,6 +24,7 @@
             android:id="@+id/recipeImage"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:contentDescription="@string/recip_image"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             tools:background="@drawable/demoimage" />
@@ -73,7 +74,7 @@
             android:fontFamily="sans-serif"
             android:textSize="14sp"
             tools:targetApi="LOLLIPOP"
-            tools:text="@string/comm_nutella_pie" />
+          />
 
     </RelativeLayout>
 

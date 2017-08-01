@@ -1,4 +1,4 @@
-package com.ng.tselebro.bakingapp.Model.POJO;
+package com.ng.tselebro.bakingapp.Model;
 
 
 import android.os.Parcel;
@@ -37,8 +37,7 @@ import com.google.gson.annotations.SerializedName;
                 return (new Ingredient[size]);
             }
 
-        }
-                ;
+        };
 
         public float getQuantity() {
             return quantity;

@@ -7,33 +7,39 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="@dimen/margin_right_f"
+        android:layout_marginEnd="@dimen/margin_right_f"
         android:id="@+id/ingredient_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="12sp"
+
         tools:text="2"/>
 
     <TextView
-        android:id="@+id/ingredient_name"
-        android:layout_marginRight="8dp"
+        android:id="@+id/ingredient_measure"
+        android:layout_marginRight="@dimen/margin_right_e"
+        android:layout_marginEnd="@dimen/margin_right_f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="12sp"
         tools:text="Cups"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="@dimen/margin_right_e"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:textSize="12sp"
         android:text="@string/string_of" />
 
     <TextView
-        android:id="@+id/ingredient_measure"
+        android:id="@+id/ingredient_name"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="12sp"
         tools:text="Granulated milk"/>
 
 </LinearLayout>

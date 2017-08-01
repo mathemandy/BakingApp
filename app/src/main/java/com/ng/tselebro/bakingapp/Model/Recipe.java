@@ -1,4 +1,4 @@
-package com.ng.tselebro.bakingapp.Model.POJO;
+package com.ng.tselebro.bakingapp.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -47,8 +47,8 @@ public class Recipe implements Parcelable
             Recipe instance = new Recipe();
             instance.id = ((int) in.readValue((int.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
-            in.readList(instance.ingredients, (com.ng.tselebro.bakingapp.Model.POJO.Ingredient.class.getClassLoader()));
-            in.readList(instance.steps, (com.ng.tselebro.bakingapp.Model.POJO.Step.class.getClassLoader()));
+            in.readList(instance.ingredients, (Ingredient.class.getClassLoader()));
+            in.readList(instance.steps, (Step.class.getClassLoader()));
             instance.servings = ((int) in.readValue((int.class.getClassLoader())));
             instance.image = ((String) in.readValue((String.class.getClassLoader())));
             return instance;

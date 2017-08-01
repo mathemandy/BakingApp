@@ -2,25 +2,22 @@ package com.ng.tselebro.bakingapp.recipe;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 
-import com.ng.tselebro.bakingapp.Model.POJO.Recipe;
-import com.ng.tselebro.bakingapp.R;
+import com.ng.tselebro.bakingapp.IdlingResource.SimpleIdlingResource;
+import com.ng.tselebro.bakingapp.Model.Recipe;
 import com.ng.tselebro.bakingapp.data.repositories.RecipeLoader;
 import com.ng.tselebro.bakingapp.data.repositories.RepositoryContract;
 
 import java.util.List;
-import java.util.prefs.Preferences;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Created by mathemandy on 13 Jun 2017.
- */
 
 public class RecipePresenter implements RecipeContract.UserActionsListener{
 
@@ -29,14 +26,15 @@ public class RecipePresenter implements RecipeContract.UserActionsListener{
     private final RecipeContract.View mRecipeView;
     private final LoaderManager mLoaderManager;
     private final RecipeLoader mRecipeLoader;
-    SharedPreferences preferences;
+    private SharedPreferences preferences;
+    private SimpleIdlingResource mSimpleIdlingResource;
 
 
-    public RecipePresenter(@NonNull RepositoryContract.RecipeRepository mRecipeRepository,
-                           @NonNull RecipeContract.View mRecipeView,
-                           @NonNull SharedPreferences preferences,
-                           @NonNull LoaderManager mLoaderManager,
-                           @NonNull RecipeLoader mRecipeLoader) {
+    RecipePresenter(@NonNull RepositoryContract.RecipeRepository mRecipeRepository,
+                    @NonNull RecipeContract.View mRecipeView,
+                    @NonNull SharedPreferences preferences,
+                    @NonNull LoaderManager mLoaderManager,
+                    @NonNull RecipeLoader mRecipeLoader) {
         this.mRecipeRepository = mRecipeRepository;
         this.mRecipeView = checkNotNull(mRecipeView, "recipesView cannot be null");
         this.mLoaderManager = mLoaderManager;
@@ -44,8 +42,11 @@ public class RecipePresenter implements RecipeContract.UserActionsListener{
         this.preferences = preferences;
     }
 
+
+
     @Override
     public void loadRecipes(Context context) {
+
         mRecipeView.setProgressIndicator(true);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -61,6 +62,7 @@ public class RecipePresenter implements RecipeContract.UserActionsListener{
                 public void onRecipesLoaded(List<Recipe> recipes) {
                     mRecipeView.setProgressIndicator(false);
                     mRecipeView.showRecipes(recipes);
+                    mRecipeView.updateWidget();
 
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putBoolean("FIRSTRUN", false);
@@ -71,7 +73,6 @@ public class RecipePresenter implements RecipeContract.UserActionsListener{
                 public void onLoadingFailed() {
                     mRecipeView.setProgressIndicator(false);
                     mRecipeView.showErrorView();
-
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putBoolean("FIRSTRUN", true);
                     editor.apply();
@@ -85,6 +86,10 @@ public class RecipePresenter implements RecipeContract.UserActionsListener{
 
             @Override
             public Loader<List<Recipe>> onCreateLoader(int id, Bundle args) {
+                if (mSimpleIdlingResource!= null){
+                    mSimpleIdlingResource.setIdleState(false);
+                }
+
                 return mRecipeLoader;
             }
 
@@ -95,6 +100,12 @@ public class RecipePresenter implements RecipeContract.UserActionsListener{
                     mRecipeView.showEmptyView();
                 }else {
                     mRecipeView.showRecipes(data);
+                    mRecipeView.updateWidget();
+                    if (mSimpleIdlingResource!= null){
+                        mSimpleIdlingResource.setIdleState(true);
+                    }
+
+
                 }
 
             }
@@ -109,7 +120,15 @@ public class RecipePresenter implements RecipeContract.UserActionsListener{
     @Override
     public void openRecipeIngredients(Recipe requestedRecipe) {
         checkNotNull(requestedRecipe, "requestedRecipe cannot be null");
-        mRecipeView.showRecipeIngredients(requestedRecipe);
+        long recipeId = requestedRecipe.getId();
+        mRecipeView.showRecipeIngredients(recipeId);
+
+    }
+
+    @Override
+    public void setIdleResource(IdlingResource mIdlingResource) {
+
+         mSimpleIdlingResource = (SimpleIdlingResource) mIdlingResource;
 
     }
 }

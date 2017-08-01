@@ -1,49 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+<FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/videoplayer_fragment"
-    android:baselineAligned="false"
-    tools:context=".recipeDetails.RecipeDetails">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!--
-    This Layout is a two pane layout for the master/detail flow
-
-    -->
-
-    <!--The Static MasterListFragment-->
-    <FrameLayout
-        android:id="@+id/master_list_container"
-        android:layout_width="294dp"
-        android:background="@color/colorAccent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/videoplayer_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        tools:context=".recipeDetails.RecipeDetails">
 
-        <!-- A small divider -->
+        <!--
+        This Layout is a two pane layout for the master/detail flow
 
-        <View
-            android:layout_width="1dp"
+        -->
+
+        <!--The Static MasterListIngredientFragment-->
+        <LinearLayout
+            android:layout_width="249dp"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/master_list_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
 
 
-        <FrameLayout
-            android:id="@+id/video_Player"
-            android:background="@color/colorPrimary"
+            <FrameLayout
+                android:id="@+id/masterStepContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside" />
+            android:layout_height="match_parent">
+
+            <!-- A small divider -->
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+
+            <FrameLayout
+                android:id="@+id/video_Player"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
-
-
-
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/details_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal|center_vertical"/>
+    <TextView
+        android:id="@+id/erro_no_data"
+        android:layout_width="wrap_content"
+        android:textSize="24sp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal|center_vertical"
+        tools:text="Oops something went wrong somewhere!!"/>
+</FrameLayout>

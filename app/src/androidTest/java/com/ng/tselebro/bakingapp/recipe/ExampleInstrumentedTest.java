@@ -1,4 +1,4 @@
-package com.ng.tselebro.bakingapp;
+package com.ng.tselebro.bakingapp.recipe;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
