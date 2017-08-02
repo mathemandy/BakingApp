@@ -69,6 +69,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
+        android:visibility="invisible"
         android:id="@+id/no_video_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

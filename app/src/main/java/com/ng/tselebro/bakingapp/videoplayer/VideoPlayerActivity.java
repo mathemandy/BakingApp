@@ -172,6 +172,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements videoContr
         Recipe mRecipe = recipe.get(0);
         mStep = mRecipe.getSteps();
         videoLoading.setVisibility(GONE);
+        mNoVideoTextView.setVisibility(GONE);
 
 //        Show the layout for the video
         mSectionPagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
@@ -179,6 +180,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements videoContr
         mViewPager.addOnPageChangeListener(mSectionPagerAdapter);
         mViewPager.setCurrentItem(mPosition);
         mSectionPagerAdapter.onPageSelected(mPosition);
+
 
     }
 

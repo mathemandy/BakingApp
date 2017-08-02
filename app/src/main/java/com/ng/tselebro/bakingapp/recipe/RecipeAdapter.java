@@ -51,53 +51,32 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
     @Override
     public void onBindViewHolder(RecipeAdapterViewHolder holder, int position) {
         Recipe recipe = mRecipes.get(position);
-        String imageUrl;
+        Drawable placeholder;
+        String imageUrl = recipe.getImage().isEmpty() ? "http://noImage" : recipe.getImage();
+
 
 
         switch (position){
             case 0 :
-                imageUrl = recipe.getImage();
-                imageUrl = imageUrl.isEmpty() ? "http://noImage" : imageUrl;
-                Picasso.with(mContext).load(imageUrl)
-                        .placeholder(holder.nuellaPie)
-                        .error(holder.nuellaPie)
-                        .into(holder.RecipeImage);
-                holder.recipeServings.setText(String.format(Locale.ENGLISH, "%2d", recipe.getServings()));
-
+             placeholder = holder.nuellaPie;
                 break;
             case 1 :
-                imageUrl = recipe.getImage();
-                imageUrl = imageUrl.isEmpty() ? "http://noImage" : imageUrl;
-                Picasso.with(mContext).load(imageUrl)
-                        .placeholder(holder.brownie)
-                        .error(holder.brownie)
-                        .into(holder.RecipeImage);
+               placeholder = holder.brownie;
                 break;
             case 2 :
-                imageUrl = recipe.getImage();
-                imageUrl = imageUrl.isEmpty() ? "http://noImage" : imageUrl;
-                Picasso.with(mContext).load(imageUrl)
-                        .placeholder(holder.yellocake)
-                        .error(holder.yellocake)
-                        .into(holder.RecipeImage);
+             placeholder = holder.yellocake;
                 break;
             case 3 :
-                imageUrl = recipe.getImage();
-                imageUrl = imageUrl.isEmpty() ? "http://noImage" : imageUrl;
-                Picasso.with(mContext).load(imageUrl)
-                        .placeholder(holder.cheeseCake)
-                        .error(holder.cheeseCake)
-                        .into(holder.RecipeImage);
+               placeholder = holder.cheeseCake;
                 break;
             default:
-                imageUrl = recipe.getImage();
-                imageUrl = imageUrl.isEmpty() ? "http://noImage" : imageUrl;
-                Picasso.with(mContext).load(imageUrl)
-                        .placeholder(holder.cheeseCake)
-                        .error(holder.cheeseCake)
-                        .into(holder.RecipeImage);
+                placeholder = holder.cheeseCake;
 
         }
+        Picasso.with(mContext).load(imageUrl)
+                .placeholder(placeholder)
+                .error(placeholder)
+                .into(holder.RecipeImage);
         holder.recipeName.setText(recipe.getName());
         holder.recipeServings.setText(String.format(Locale.ENGLISH, "%2d", recipe.getServings()));
 
