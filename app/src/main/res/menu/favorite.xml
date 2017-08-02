@@ -7,7 +7,7 @@
         android:id="@+id/favorite"
         android:orderInCategory="1"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/favorite_border">
+        android:icon="@drawable/ic_favorite_black_24dp">
 
 
     </item>

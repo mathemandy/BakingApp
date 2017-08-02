@@ -237,9 +237,9 @@ else {
     public void showFavoriteState(boolean state) {
 
             if (state){
-                mFav.setIcon(ContextCompat.getDrawable(this, R.drawable.favorite));
+                mFav.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_black_24dp));
             }else {
-                mFav.setIcon(ContextCompat.getDrawable(this, R.drawable.favorite_border));
+                mFav.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_black_24dp));
             }
     }
 }
